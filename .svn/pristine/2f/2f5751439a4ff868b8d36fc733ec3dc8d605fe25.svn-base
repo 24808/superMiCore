@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Dream.Shop.DataEntity
+{
+    /// <summary>
+    /// 订单表
+    /// </summary>
+    public class Order : BaseMod
+    {
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        public string OrderId { get; set; }
+        /// <summary>
+        /// 用户编号
+        /// </summary>
+        public string UserID { get; set; }
+        
+
+    }
+}

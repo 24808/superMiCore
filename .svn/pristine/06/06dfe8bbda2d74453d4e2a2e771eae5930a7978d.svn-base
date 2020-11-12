@@ -1,0 +1,111 @@
+﻿using Dream.Shop.DataEntity;
+using Dream.Shop.IService;
+using Dream.Shop.Models;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Dream.Shop.Service
+{
+    public class ShoppingCartService : IShoppingCartService
+    {
+        private readonly ILogger<HomePageService> _logger;
+        private readonly Dream_ShopContext EF;
+        public ShoppingCartService(ILogger<HomePageService> logger, Dream_ShopContext dbContext)
+        //: base(dbContext)
+        {
+            _logger = logger;
+            EF = dbContext;
+
+        }
+        public List<ShoppingCarOutput> GetShoppingCarList(string userid)
+        {
+
+            var data = EF.ShoppingCars.ToList();
+
+
+            return (from a in data
+                    join b in EF.Goods on a.GoodId equals b.GoodId
+                    join c in EF.Good_Specifications on a.GoodId equals c.GoodId
+                    where a.UserId == userid
+                    select new ShoppingCarOutput
+                    {
+                        Amount = 1,
+                        Price = GetGoodPrice(b.GoodId),
+                        Title = b.Title,
+                        Stock = b.Stock,
+                        GoodId = b.GoodId,
+                        GoodName = b.GoodName,
+                        ImgUrl = b.ThumbnailImg,
+                        ChlidSpecification = GetChild(b.GoodId, ""),
+                    }).ToList();
+        }
+        public decimal GetGoodPrice(string goodid)
+        {
+            var list = EF.Good_Specifications.Where(a => a.GoodId == goodid).ToList();
+            foreach (var item in list)
+            {
+                if (item.Price != 0)
+                {
+                    return Convert.ToDecimal(item.Price);
+                }
+            }
+            return 0;
+        }
+        public List<SpecificationOutput> GetChild(string goodid, string pid)
+        {
+            var data = EF.GoodSpecifications.Where(a => a.ParentId == pid).ToList();
+            if (data.Count == 0)
+            {
+                return null;
+            }
+            var chlidlist = (from a in EF.GoodSpecifications
+                             join b in EF.Good_Specifications on a.SpecificationId equals b.SpecificationId
+                             where b.GoodId == goodid && a.ParentId == pid
+                             select new SpecificationOutput
+                             {
+                                 SpecificationId = a.SpecificationId,
+                                 ParentId = a.ParentId,
+                                 SpecificationName = a.SpecificationName,
+                             }).Distinct().ToList();
+            foreach (var item in chlidlist)
+            {
+                item.SpecificationNum = EF.Good_Specifications.Where(a => a.SpecificationId == item.SpecificationId).ToList();
+                item.Chlid = GetChild(goodid, item.SpecificationId);
+
+            }
+
+            return chlidlist;
+        }
+
+        public List<ShoppingCarOutput> IntoShoppingCar(string goodid, string userid)
+        {
+            var data = EF.ShoppingCars.FirstOrDefault(a => a.GoodId == goodid && a.UserId == userid);
+            if (data != null)
+            {
+                data.Amount += 1;
+            }
+            else
+            {
+                var mod = new ShoppingCar
+                {
+                    Amount = 1,
+                    CreateTime = DateTime.Now,
+                    GoodId = goodid,
+                    IsDelect = true,
+                    UserId = userid,
+                };
+                EF.ShoppingCars.Add(mod);
+            }
+            if (EF.SaveChanges() > 0)
+            {
+                return GetShoppingCarList(userid);
+            }
+            return null;
+
+
+        }
+    }
+}

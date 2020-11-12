@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Dream.Shop.WebApi.Handler
+{
+    public class ResData
+    {
+        public bool state { get; set; }
+        public string msg { get; set; }
+        public int count { get; set; }
+        public object data { get; set; }
+
+        public static ResData Succ(object _data = null, string _msg = "succ", int _count = 0)
+        {
+            return new ResData()
+            {
+                count = _count,
+                data = _data,
+                msg = _msg,
+                state = true
+            };
+        }
+        public static ResData Fail(string _msg = "fail")
+        {
+            return new ResData()
+            {
+                count = 0,
+                data = null,
+                msg = _msg,
+                state = false
+            };
+        }
+    }
+}

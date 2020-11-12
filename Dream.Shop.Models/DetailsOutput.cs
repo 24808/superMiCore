@@ -1,0 +1,46 @@
+﻿using Dream.Shop.DataEntity;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Dream.Shop.Models
+{
+    public class DetailsOutput
+    {
+        /// <summary>
+        /// 商品编号
+        /// </summary>
+        public string GoodId { get; set; }
+        /// <summary>
+        /// 商品名字
+        /// </summary>
+        public string GoodName { get; set; }
+        /// <summary>
+        /// 类别编号
+        /// </summary>
+        public string CategoryId { get; set; }
+        /// <summary>
+        /// 类别名称
+        /// </summary>
+        public string CategoryName { get; set; }
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public string Title { get; set; }
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public string Content { get; set; }
+        /// <summary>
+        /// 图片
+        /// </summary>
+        public List<Images> ImagesUrl { get; set; }
+        /// <summary>
+        /// 获取规格
+        /// </summary>
+        public List<SpecificationOutput> ChlidClass { get; set; }
+
+
+
+    }
+}

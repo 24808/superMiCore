@@ -1,0 +1,186 @@
+﻿using Dream.Shop.DataEntity;
+using Dream.Shop.IService;
+using Dream.Shop.Models;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Dream.Shop.Service
+{
+    public class ShoppingCartService : IShoppingCartService
+    {
+        private readonly ILogger<HomePageService> _logger;
+        private readonly Dream_ShopContext EF;
+        public ShoppingCartService(ILogger<HomePageService> logger, Dream_ShopContext dbContext)
+        //: base(dbContext)
+        {
+            _logger = logger;
+            EF = dbContext;
+
+        }
+        /// <summary>
+        /// 获取购物车页面
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public List<ShoppingCarOutput> GetShoppingCarList(string userid)
+        {
+            return (from a in EF.ShoppingCars
+                    join b in EF.Goods on a.GoodId equals b.GoodId
+                    join c in EF.Good_Specifications on a.GoodId equals c.GoodId
+                    where a.UserId == userid
+                    select new ShoppingCarOutput
+                    {
+                        Amount = 1,
+                        Price = a.Price,
+                        Title = b.Title,
+                        Stock = b.Stock,
+                        GoodId = b.GoodId,
+                        GoodName = b.GoodName,
+                        ImgUrl = b.ThumbnailImg,
+                        ChlidSpecification = GetChild(a.ArrSpecificationId, ""),
+                    }).ToList();
+        }
+        
+        
+        /// <summary>
+        /// 获取选取规格
+        /// </summary>
+        /// <param name="specificationarr"></param>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public List<SpecificationOutput> GetChild(string specificationarr, string pid)
+        {
+            string[] arr = specificationarr.Split(",");
+            var data = EF.GoodSpecifications.ToList();
+            var chlidlist = new List<SpecificationOutput>();
+            if (data.Count == 0)
+            {
+                return null;
+            }
+            for (var i = 0; i <= arr.Length; i++)
+            {
+                var chlid = EF.Good_Specifications.Where(a => a.Id == Convert.ToInt32(arr[i])).ToList();
+                chlidlist = (from a in EF.GoodSpecifications
+                             join b in EF.Good_Specifications on a.SpecificationId equals b.SpecificationId
+                             where b.Id == Convert.ToInt32(arr[i]) && b.ParentId == pid
+                             select new SpecificationOutput
+                             {
+                                 SpecificationId = a.SpecificationId,
+                                 ParentId = b.ParentId,
+                                 SpecificationName = a.SpecificationName,
+                                 SpecificationNum = EF.Good_Specifications.Where(x => x.SpecificationId == a.SpecificationId).ToList(),
+                                 Chlid = GetChild(Convert.ToString(b.Id), a.SpecificationId)
+                             }).Distinct().ToList();
+            }
+            return chlidlist;
+        }
+        /// <summary>
+        /// 加入购物车
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <param name="userid"></param>
+        /// <param name="specificationarr"></param>
+        /// <returns></returns>
+        public List<ShoppingCarOutput> IntoShoppingCar(string goodid, string userid,string specificationarr)
+        {
+            var data = EF.ShoppingCars.FirstOrDefault(a => a.GoodId == goodid && a.UserId == userid);
+            if (data != null)
+            {
+                data.Number += 1;
+            }
+            else
+            {
+                var mod = new ShoppingCar
+                {
+                    Number = 1,
+                    Price = GetGoodPrice(goodid),
+                    CreateTime = DateTime.Now,
+                    GoodId = goodid,
+                    IsDelect = true,
+                    UserId = userid,
+                    ArrSpecificationId = specificationarr,
+                };
+                EF.ShoppingCars.Add(mod);
+            }
+            if (EF.SaveChanges() > 0)
+            {
+                return GetShoppingCarList(userid);
+            }
+            return null;
+        }
+        public decimal GetGoodPrice(string goodid)
+        {
+            var list = EF.Good_Specifications.Where(a => a.GoodId == goodid).ToList();
+            var price = (from a in list
+                         join b in EF.GoodSpecifications on a.SpecificationId equals b.SpecificationId
+                         where a.ParentId != ""
+                         select new
+                         {
+                             price = a.Price
+                         }).FirstOrDefault();
+            return 0;
+        }
+        /// <summary>
+        /// 结算页展示
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <param name="carlist"></param>
+        /// <returns></returns>
+        public List<SettlementOutput> GetSettlementsList(string userid, List<ShoppingCarOutput> carlist)
+        {
+            var list = new List<SettlementOutput>();
+            foreach(var item in carlist)
+            {
+                var mod = new SettlementOutput()
+                {
+                    UserId = userid,
+                    Amount = item.Amount,
+                    GoodId = item.GoodId,
+                    GoodName = item.GoodName,
+                    Price = item.Price,
+                    SpecificationList = item.ChlidSpecification,
+                };
+                list.Add(mod);
+            }
+            return list;
+        }
+        /// <summary>
+        /// 删除商品or服务
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public List<ShoppingCarOutput> ShoppingCarDelect(string goodid,string gsid,string userid)
+        {
+            var data = EF.ShoppingCars.FirstOrDefault(a => a.GoodId == goodid);
+            if(gsid != "")
+            {
+                var arrSpecification = data.ArrSpecificationId.Split(",");
+                foreach(var arr in arrSpecification)
+                {
+                    if(arr == gsid)
+                    {
+                        ArrayList al = new ArrayList(arrSpecification);
+                        al.Remove(arr);
+                        return GetShoppingCarList(userid);
+                    }
+                }
+            }
+            else
+            {
+                EF.Remove(data);
+                if (EF.SaveChanges() > 0)
+                {
+                    return GetShoppingCarList(userid);
+                };
+            }
+                return null;
+
+
+        }
+    }
+}

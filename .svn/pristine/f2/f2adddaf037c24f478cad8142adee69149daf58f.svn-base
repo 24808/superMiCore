@@ -1,0 +1,133 @@
+
+using Dream.Shop.DataEntity;
+using Dream.Shop.IService;
+using Dream.Shop.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Dream.Shop.Service
+{
+    public class DetailsPageService : IDetailsPageService
+    {
+
+        private readonly ILogger<HomePageService> _logger;
+        private readonly Dream_ShopContext EF;
+        public DetailsPageService(ILogger<HomePageService> logger, Dream_ShopContext dbContext)
+        //: base(dbContext)
+        {
+            _logger = logger;
+            EF = dbContext;
+
+        }
+        /// <summary>
+        /// 商品页
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <returns></returns>
+        public DetailsOutput GetGood(string goodid)
+        {
+
+
+            var data = (from a in EF.Goods
+                        join c in EF.GoodCategories on a.CategoryID equals c.CategoryID
+                        join d in EF.Good_Specifications on a.CategoryID equals d.GoodId
+                        where a.GoodId == goodid && c.ParentId == ""
+                        select new DetailsOutput
+                        {
+                            GoodId = a.GoodId,
+                            GoodName = a.GoodName,
+                            Title = a.Title,
+                            Content = a.Content,
+                            CategoryName = c.CategoryName,
+                            ImagesUrl = EF.Images.Where(a => a.Number == goodid).ToList(),
+                            ChlidClass = GetChild(goodid,""),
+                            Price = GetGoodPrice(goodid),
+                        }).FirstOrDefault();
+
+            return data;
+        }
+        /// <summary>
+        /// 获取商品价格
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <returns></returns>
+        public decimal GetGoodPrice(string goodid)
+        {
+            var list = EF.Good_Specifications.Where(a => a.GoodId == goodid).ToList();
+            foreach(var item in list)
+            {
+                if(item.Price != 0)
+                {
+                    return Convert.ToDecimal(item.Price);
+                }
+            }
+            return 0;
+        }
+        /// <summary>
+        /// 获取商品规格
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public List<SpecificationOutput> GetChild(string goodid,string pid)
+        {
+            var data = EF.GoodSpecifications.Where(a => a.ParentId == pid).ToList();
+            if(data.Count == 0)
+            {
+                return null;
+            }
+            var chlidlist = (from a in EF.GoodSpecifications
+                             join b in EF.Good_Specifications on a.SpecificationId equals b.SpecificationId
+                             where b.GoodId == goodid && a.ParentId == pid
+                             select new SpecificationOutput
+                             {
+                                 SpecificationId = a.SpecificationId,
+                                 ParentId = a.ParentId,
+                                 SpecificationName = a.SpecificationName,
+                             }).Distinct().ToList();
+            foreach (var item in chlidlist)
+            {
+                item.SpecificationNum = EF.Good_Specifications.Where(a => a.SpecificationId == item.SpecificationId).ToList();
+                item.Chlid = GetChild(goodid, item.SpecificationId);
+
+            }
+
+            return chlidlist;
+        }
+        /// <summary>
+        /// 查看所有商品评论
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public List<CommentOutput> GetGoodComment(string goodid,string pid = "")
+        {
+            var list = new List<CommentOutput>();
+            var data = EF.Comments.Where(a => a.Number == goodid && a.ParentId == pid).ToList();
+            if (data.Count == 0)
+            {
+                return null;
+            }
+            foreach (var item in data)
+            {
+                var mod = new CommentOutput()
+                {
+                    CommentId = item.CommentId,
+                    Content = item.Content,
+                    CreateTime = item.CreateTime,
+                    Number = item.Number,
+                    UserId = item.UserId,
+                    ParentId = item.ParentId,
+                    SupportCount = item.SupportCount,
+                    OpposeCount = item.OpposeCount,
+                    ChlidCom = GetGoodComment(goodid, item.CommentId)
+                };
+                list.Add(mod);
+            }
+            return list;
+        }
+    }
+}

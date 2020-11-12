@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Dream.Shop.Models;
+using Dream.Shop.DataEntity;
+
+
+namespace Dream.Shop.IService
+{
+    public interface IShoppingCartService
+    {
+        /// <summary>
+        /// 获取购物车列表
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        List<ShoppingCarOutput> GetShoppingCarList(string userid);
+        /// <summary>
+        /// 加入购物车
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        List<ShoppingCarOutput> IntoShoppingCar(string goodid,string userid,string specificationarr);
+        /// <summary>
+        /// 获取订单页
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <param name="carlist"></param>
+        /// <returns></returns>
+        List<SettlementOutput> GetSettlementsList(string userid,List<ShoppingCarOutput> carlist);
+        /// <summary>
+        /// 删除商品or服务
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        List<ShoppingCarOutput> ShoppingCarDelect(string goodid, string gsid, string userid);
+
+    }
+}

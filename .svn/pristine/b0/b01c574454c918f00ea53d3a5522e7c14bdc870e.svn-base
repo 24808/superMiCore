@@ -1,0 +1,217 @@
+﻿using Dream.Shop.DataEntity;
+using Dream.Shop.IService;
+using Dream.Shop.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Xml;
+
+namespace Dream.Shop.Service
+{
+    /// <summary>
+    /// 个人中心实现类
+    /// </summary>
+    public class PersonalService : IPersonalService
+    {
+        private readonly Dream_ShopContext EF;
+        public PersonalService(Dream_ShopContext _ef)
+        {
+            EF = _ef;
+        }
+        /// <summary>
+        /// 添加地址
+        /// </summary>
+        /// <param name="mod"></param>
+        /// <returns></returns>
+        public List<ShoppingAddress> AddAddress(ShoppingAddress mod, string userId)
+        {
+            mod.UserId = "";
+            userId = "";
+            EF.ShoppingAddresses.Add(mod);
+            if (EF.SaveChanges() > 0)
+            {
+                return GetShoppingAddress(userId);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<User_GoodsOder> GetUser_Goods()
+        {
+            List<User_GoodsOder> list = new List<User_GoodsOder>();
+            list = (from o in EF.Orders
+                    join u in EF.UserInfos on o.UserID equals u.UserID
+                    join go in EF.Good_Orders on o.OrderId equals go.Order
+                    join g in EF.Goods on go.GoodId equals g.GoodId
+                    join gs in EF.Good_Specifications on g.GoodId equals gs.GoodId
+                    join godsp in EF.GoodSpecifications on gs.SpecificationId equals godsp.SpecificationId
+                    select new User_GoodsOder()
+                    {
+                        OrderId = o.OrderId,
+                        UserId = u.UserID,
+                        UserName = u.UserName,
+                        GoodId = g.GoodId,
+                        GoodName = g.GoodName,
+                        Quantity = go.Quantity,
+                        Price = go.Price,
+                        SpecificationName = godsp.SpecificationName,
+                        SpecificationNum = gs.SpecificationNum,
+                        OrderType = go.OrderType,
+                        CreateTime = go.CreateTime
+                    }).ToList();
+            return list;
+        }
+
+        public List<User_GoodsOder> GoodsCount(int? Type, int page, int limte, int ordertype, string userId)
+        {
+            var li = GetUser_Goods().Where(a => a.OrderType == ordertype && a.UserId == userId).OrderByDescending(a => a.CreateTime).Skip((page - 1) * limte).Take(limte).ToList();
+            return li;
+        }
+
+        /// <summary>
+        /// 获取用户的所有订单
+        /// </summary>
+        /// <param name="Type">订单类型</param>
+        /// <param name="page"></param>
+        /// <param name="limte"></param>
+        /// <returns></returns>
+        public List<User_GoodsOder> GetGood_OrdersList(int? Type, int page, int limte, string userId)
+        {
+            if (!Type.HasValue)
+            {
+                if (Type == 1)
+                {
+                    //1待付款
+                    return GoodsCount(Type, page, limte, 1, userId);
+                }
+                else if (Type == 2)
+                {
+                    //2待发货
+                    return GoodsCount(Type, page, limte, 2, userId);
+                }
+                else if (Type == 3)
+                {
+                    //3待收货
+                    return GoodsCount(Type, page, limte, 3, userId);
+                }
+                else if (Type == 4)
+                {
+                    //4待评价
+                    return GoodsCount(Type, page, limte, 4, userId);
+                }
+                else
+                {
+                    //5已评价
+                    return GoodsCount(Type, page, limte, 5, userId);
+                }
+            }
+            else
+            {
+                var li = GetUser_Goods().Where(a => a.UserId == userId).OrderByDescending(a => a.CreateTime).Skip((page - 1) * limte).Take(limte).ToList();
+                return li;
+            }
+        }
+        /// <summary>
+        /// 获取用户的所有地址
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public List<ShoppingAddress> GetShoppingAddress(string userId)
+        {
+            var list = EF.ShoppingAddresses.Where(a => a.UserId == userId).ToList();
+            return list;
+        }
+
+        #region 删除
+        /// <summary>
+        /// 删除地址
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public List<ShoppingAddress> DeleteAddress(int id, string userId)
+        {
+            var addressmod = EF.ShoppingAddresses.FirstOrDefault(a => a.Id == id && a.UserId == userId);
+            //删除地址
+            EF.ShoppingAddresses.Remove(addressmod);
+            if (EF.SaveChanges() > 0)
+            {
+                return GetShoppingAddress(userId);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// 删除订单
+        /// </summary>
+        /// <param name="Type"></param>
+        /// <param name="page"></param>
+        /// <param name="limte"></param>
+        /// <param name="id"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public List<User_GoodsOder> DeleteGoodOrder(int? Type, int page, int limte, int id, string userId)
+        {
+            var odermod = EF.Orders.FirstOrDefault(a => a.Id == id && a.UserID == userId);
+            EF.Orders.Remove(odermod);
+            if (EF.SaveChanges() > 0)
+            {
+                return GetGood_OrdersList(Type, page, limte, userId);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
+        #region 修改
+        /// <summary>
+        /// 修改用户信息
+        /// </summary>
+        /// <param name="usermod"></param>
+        /// <returns></returns>
+        public List<UserInfo> UpdataUser(UserInfo usermod, string userId)
+        {
+            var li = EF.UserInfos.FirstOrDefault(a => a.UserID == userId);
+            li.UserName = usermod.UserName;
+            li.PassWord = usermod.PassWord;
+            li.PhoneNum = usermod.PhoneNum;
+            li.Email = usermod.Email;
+
+            if (EF.SaveChanges() > 0)
+            {
+                return EF.UserInfos.Where(a => a.UserID == userId).ToList();
+            }
+            else
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// 修改地址
+        /// </summary>
+        /// <param name="addressmod"></param>s
+        /// <returns></returns>
+        public List<ShoppingAddress> UpAddress(ShoppingAddress addressmod, string userId)
+        {
+            var li = EF.ShoppingAddresses.FirstOrDefault(a => a.UserId == userId);
+            li.Address = addressmod.Address;
+            if (EF.SaveChanges() > 0)
+            {
+                return GetShoppingAddress(userId);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        #endregion
+    }
+}

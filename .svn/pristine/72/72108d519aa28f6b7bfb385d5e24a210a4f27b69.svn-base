@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Dream.Shop.Models;
+using Dream.Shop.DataEntity;
+
+
+namespace Dream.Shop.IService
+{
+    public interface IShoppingCartService
+    {
+        List<ShoppingCarOutput> GetShoppingCarList(string userid);
+        List<ShoppingCarOutput> IntoShoppingCar(string goodid,string userid);
+    }
+}

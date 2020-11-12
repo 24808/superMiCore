@@ -1,0 +1,15 @@
+﻿using Dream.Shop.DataEntity;
+using Dream.Shop.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Dream.Shop.IService
+{
+    public interface IHomePageService
+    {
+        List<object> GetCagegoryHomes();
+        List<HomeGoodOutput> GetHomeGood(int page, int limte);
+        List<Goods> GetFuzzyGood(string str,int page,int limte);
+    }
+}

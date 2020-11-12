@@ -1,0 +1,253 @@
+
+using Dream.Shop.DataEntity;
+using Dream.Shop.IService;
+using Dream.Shop.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Dream.Shop.Service
+{
+    public class DetailsPageService : IDetailsPageService
+    {
+
+        private readonly ILogger<HomePageService> _logger;
+        private readonly Dream_ShopContext EF;
+
+
+        public DetailsPageService(ILogger<HomePageService> logger, Dream_ShopContext dbContext)
+        //: base(dbContext)
+        {
+            _logger = logger;
+            EF = dbContext;
+
+        }
+        /// <summary>
+        /// 商品页
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <returns></returns>
+        public DetailsOutput GetGood(string goodid,string gsid)
+        {
+
+
+            var data = (from a in EF.Goods
+                        join c in EF.GoodCategories on a.CategoryID equals c.CategoryID
+                        join d in EF.Good_Specifications on a.CategoryID equals d.GoodId
+                        where a.GoodId == goodid && c.ParentId == ""
+                        select new DetailsOutput
+                        {
+                            GoodId = a.GoodId,
+                            GoodName = a.GoodName,
+                            Title = a.Title,
+                            Content = a.Content,
+                            CategoryName = c.CategoryName,
+<<<<<<< .mine
+                            ImagesUrl = EF.Images.OrderBy(a=> a.Rank).Where(a => a.Number == goodid).ToList(),
+||||||| .r51
+                            ImagesUrl = EF.Images.Where(a => a.Number == goodid).ToList(),
+=======
+                            ImagesUrl = EF.Images.Where(a => a.Number == goodid).OrderBy(a=> a.Rank).ToList(),
+>>>>>>> .r52
+                            ChlidClass = GetChild(goodid,""),
+                            Price = GetGoodPrice(goodid, gsid),
+                        }).FirstOrDefault();
+
+            return data;
+        }
+        /// <summary>
+        /// 获取商品价格
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <returns></returns>
+        public decimal GetGoodPrice(string goodid, string gsid)
+        {
+            if (gsid != "")
+            {
+                return Convert.ToDecimal(EF.Good_Specifications.FirstOrDefault(a => a.GSId == gsid).Price);
+            }
+            return Convert.ToDecimal((from a in EF.Good_Specifications
+                                      join c in EF.GoodSpecifications on a.SpecificationId equals c.SpecificationId
+                                      where a.GoodId == goodid
+                                      select new Good_Specification
+                                      {
+                                          Price = EF.Good_Specifications.FirstOrDefault(a => a.SpecificationId == c.SpecificationId).Price
+                                      }).FirstOrDefault().Price);
+        }
+        /// <summary>
+        /// 获取商品规格
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public List<SpecificationOutput> GetChild(string goodid,string pid)
+        {
+            var data = EF.Good_Specifications.Where(a=> a.ParentId == pid).ToList();
+            if (data.Count == 0)
+            {
+                return null;
+            }
+            var chlidlist = (from a in EF.GoodSpecifications
+                             join b in data on a.SpecificationId equals b.SpecificationId
+                             where b.GoodId == goodid && b.ParentId == pid
+                             select new SpecificationOutput
+                             {
+                                 SpecificationId = a.SpecificationId,
+                                 ParentId = b.ParentId,
+                                 SpecificationName = a.SpecificationName,
+                                 SpecificationNum = EF.Good_Specifications.Where(a => a.SpecificationId == a.SpecificationId).ToList(),
+                                 Chlid = GetChild(goodid, a.SpecificationId),
+                             }).Distinct().ToList();
+
+
+            return chlidlist;
+        }
+<<<<<<< .mine
+        /// <summary>
+        /// 查看所有商品评论
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public List<CommentOutput> GetGoodComment(string goodid,string pid = "")
+        {
+            var list = new List<CommentOutput>();
+            var data = EF.Comments.Where(a => a.Number == goodid && a.ParentId == pid).OrderBy(a=> a.CreateTime).ToList();
+            if (data.Count == 0)
+            {
+                return null;
+            }
+            foreach (var item in data)
+            {
+                var mod = new CommentOutput()
+                {
+                    CommentId = item.CommentId,
+                    Content = item.Content,
+                    CreateTime = item.CreateTime,
+                    Number = item.Number,
+                    UserId = item.UserId,
+                    ParentId = item.ParentId,
+                    SupportCount = item.SupportCount,
+                    OpposeCount = item.OpposeCount,
+                    ChlidCom = GetGoodComment(goodid, item.CommentId)
+                };
+                list.Add(mod);
+            }
+            return list;
+        }
+        /// <summary>
+        /// 回复评论
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <param name="goodid"></param>
+        /// <param name="commentid"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public List<CommentOutput> ReplyComment(string userid, string goodid, string commentid,string content)
+        {
+
+            var mod = new Comment()
+            {
+                IsDelect = true,
+                CreateTime = DateTime.Now,
+                CommentId = "P200" + Convert.ToString(EF.Comments.Count()),
+                Number = goodid,
+                Content = content,
+                OpposeCount = 0,
+                SupportCount = 0,
+                UserId = userid,
+                ParentId = commentid,
+            };
+            EF.Add(mod);
+            if (EF.SaveChanges() == 0)
+            {
+                return null;
+            }
+            return GetGoodComment(goodid, "");
+        }
+        /// <summary>
+        /// 点赞or踩
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <param name="commentid"></param>
+        /// <param name="jundge"></param>
+        /// <returns></returns>
+        public List<CommentOutput> SupportOrOppose(string goodid, string commentid, bool jundge)
+        {
+            var data = EF.Comments.FirstOrDefault(a => a.CommentId == commentid);
+            if(jundge == true)
+            {
+                data.SupportCount += 1;
+            }
+            else
+            {
+                data.OpposeCount += 1;
+            }
+            if (EF.SaveChanges() == 0)
+            {
+                return null;
+            }
+            return GetGoodComment(goodid, "");
+        }
+||||||| .r43
+=======
+        /// <summary>
+        /// 查看所有商品评论
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public List<CommentOutput> GetGoodComment(string goodid,string pid = "")
+        {
+            var list = new List<CommentOutput>();
+            var data = EF.Comments.Where(a => a.Number == goodid && a.ParentId == pid).ToList();
+            if (data.Count == 0)
+            {
+                return null;
+            }
+            foreach (var item in data)
+            {
+                var mod = new CommentOutput()
+                {
+                    CommentId = item.CommentId,
+                    Content = item.Content,
+                    CreateTime = item.CreateTime,
+                    Number = item.Number,
+                    UserId = item.UserId,
+                    ParentId = item.ParentId,
+                    SupportCount = item.SupportCount,
+                    OpposeCount = item.OpposeCount,
+                    ChlidCom = GetGoodComment(goodid, item.CommentId)
+                };
+                list.Add(mod);
+            }
+            return list;
+        }
+<<<<<<< .mine
+        /// <summary>
+        /// 获取商品概述
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <returns></returns>
+        public List<Images> GetOutLine(string outlineid)
+        {
+            return EF.Images.OrderBy(a=> a.Rank).Where(a => a.Number == outlineid).ToList();
+        }
+        /// <summary>
+        /// 获取商品参数
+        /// </summary>
+        /// <param name="goodid"></param>
+        /// <returns></returns>
+        public List<Images> GetParameter(string parameterid)
+        {
+            return EF.Images.OrderBy(a => a.Rank).Where(a => a.Number == parameterid).ToList();
+
+        }
+||||||| .r51
+=======
+>>>>>>> .r51
+>>>>>>> .r52
+    }
+}

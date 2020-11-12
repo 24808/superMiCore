@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Dream.Shop.DataEntity;
+using Dream.Shop.IService;
+using Dream.Shop.Service;
+using Dream.Shop.WebApi.Handler;
+using Dream.Shop.WebApi.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
+
+namespace Dream.Shop.WebApi.Controllers
+{
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class PersonalController : RegisterApiController
+    {
+        private readonly IMemoryCache cache;
+        private readonly IPersonalService personalI;
+        private readonly IOptions<EmailMod> options;
+        private readonly IRegisterService service;
+
+
+        public PersonalController(IMemoryCache _cache, IPersonalService personalI, IOptions<EmailMod> _options, IRegisterService _service) : base(_cache, _options, _service)
+        {
+            cache = _cache;
+            this.personalI = personalI;
+            options = _options;
+            this.service = _service;
+
+        }
+
+        #region 订单
+        [HttpGet]
+        public ResData GetPersonal(int? Type, int page = 1, int limte = 10)
+        {
+            var user = GetCookies("userid");
+            var li = personalI.GetGood_OrdersList(Type, page, limte, user);
+            return ResData.Succ(li);
+        }
+        #endregion
+        #region 获取地址
+        [HttpGet]
+        public ResData GetShoppingAddress()
+        {
+            var user = GetCookies("userid");
+            var list = personalI.GetShoppingAddress(user);
+            return ResData.Succ(list);
+        }
+        #endregion
+        #region 修改
+        [HttpPost]
+        public ResData UpUserInfo([FromForm] UserInfo usermod)
+        {
+            var user = GetCookies("userid");
+            var up = personalI.UpdataUser(usermod, user);
+            return ResData.Succ(up);
+        }
+        [HttpPost]
+        public ResData UpAddress([FromForm] ShoppingAddress addressmod)
+        {
+            var user = GetCookies("userid");
+            var up = personalI.UpAddress(addressmod, user);
+            return ResData.Succ(up);
+        }
+        #endregion
+        #region 删除
+        [HttpPost]
+        public ResData DeleteGoodOrder([FromForm] int id, [FromForm] int? Type, [FromForm] int page = 1, [FromForm] int limte = 10)
+        {
+            var user = GetCookies("userid");
+            var li = personalI.DeleteGoodOrder(Type, limte, page,id,user);
+            return ResData.Succ(li);
+        }
+        [HttpPost]
+        public ResData Delete([FromForm] int id, [FromForm] int? Type, [FromForm] int page = 1, [FromForm] int limte = 10)
+        {
+            var user = GetCookies("userid");
+            var li = personalI.DeleteAddress(id,user);
+            return ResData.Succ(li);
+        }
+        #endregion
+
+    }
+}

@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Dream.Shop.IService;
+using Dream.Shop.WebApi.Handler;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Dream.Shop.WebApi.Controllers
+{
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class HomeApiController : ControllerBase
+    {
+        private readonly IHomePageService home;
+        public HomeApiController( IHomePageService _home) : base()
+        {
+            this.home = _home;
+        }
+        [HttpPost]
+        public ResData CagegoryHome()
+        {
+
+            var list = home.GetCagegoryHomes();
+            return ResData.Succ(list);
+        }
+        [HttpPost]
+        public ResData GetHomeGood()
+        {
+
+            var list = home.GetHomeGood();
+            return ResData.Succ(list);
+        }
+        [HttpPost]
+        public ResData FuzzyGood([FromForm] string str)
+        {
+
+            var list = home.GetFuzzyGood(str);
+            return ResData.Succ(list);
+        }
+    }
+}

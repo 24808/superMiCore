@@ -1,0 +1,576 @@
+{
+  "format": 1,
+  "restore": {
+<<<<<<< .mine
+    "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Service\\Dream.Shop.Service.csproj": {}
+||||||| .r43
+    "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Service\\Dream.Shop.Service.csproj": {}
+=======
+    "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Service\\Dream.Shop.Service.csproj": {}
+>>>>>>> .r51
+  },
+  "projects": {
+<<<<<<< .mine
+    "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+||||||| .r43
+    "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+=======
+    "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+>>>>>>> .r51
+      "version": "1.0.0",
+      "restore": {
+<<<<<<< .mine
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj",
+||||||| .r43
+        "projectUniqueName": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj",
+=======
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj",
+>>>>>>> .r51
+        "projectName": "Dream.Shop.DataEntity",
+<<<<<<< .mine
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.DataEntity\\obj\\",
+||||||| .r43
+        "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj",
+        "packagesPath": "C:\\Users\\loco1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.DataEntity\\obj\\",
+=======
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.DataEntity\\obj\\",
+>>>>>>> .r51
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+<<<<<<< .mine
+    "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.IService\\Dream.Shop.IService.csproj": {
+||||||| .r43
+    "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.IService\\Dream.Shop.IService.csproj": {
+=======
+    "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.IService\\Dream.Shop.IService.csproj": {
+>>>>>>> .r51
+      "version": "1.0.0",
+      "restore": {
+<<<<<<< .mine
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.IService\\Dream.Shop.IService.csproj",
+||||||| .r43
+        "projectUniqueName": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.IService\\Dream.Shop.IService.csproj",
+=======
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.IService\\Dream.Shop.IService.csproj",
+>>>>>>> .r51
+        "projectName": "Dream.Shop.IService",
+<<<<<<< .mine
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.IService\\Dream.Shop.IService.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.IService\\obj\\",
+||||||| .r43
+        "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.IService\\Dream.Shop.IService.csproj",
+        "packagesPath": "C:\\Users\\loco1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.IService\\obj\\",
+=======
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.IService\\Dream.Shop.IService.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.IService\\obj\\",
+>>>>>>> .r51
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+<<<<<<< .mine
+              "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj"
+||||||| .r43
+              "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+                "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj"
+=======
+              "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj"
+>>>>>>> .r51
+              },
+<<<<<<< .mine
+              "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj"
+||||||| .r43
+              "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Models\\Dream.Shop.Models.csproj": {
+                "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Models\\Dream.Shop.Models.csproj"
+=======
+              "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj"
+>>>>>>> .r51
+              },
+<<<<<<< .mine
+              "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj"
+||||||| .r43
+              "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj": {
+                "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj"
+=======
+              "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj"
+>>>>>>> .r51
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+<<<<<<< .mine
+    "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj": {
+||||||| .r43
+    "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Models\\Dream.Shop.Models.csproj": {
+=======
+    "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj": {
+>>>>>>> .r51
+      "version": "1.0.0",
+      "restore": {
+<<<<<<< .mine
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj",
+||||||| .r43
+        "projectUniqueName": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Models\\Dream.Shop.Models.csproj",
+=======
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj",
+>>>>>>> .r51
+        "projectName": "Dream.Shop.Models",
+<<<<<<< .mine
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Models\\obj\\",
+||||||| .r43
+        "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Models\\Dream.Shop.Models.csproj",
+        "packagesPath": "C:\\Users\\loco1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Models\\obj\\",
+=======
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Models\\obj\\",
+>>>>>>> .r51
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+<<<<<<< .mine
+              "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj"
+||||||| .r43
+              "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+                "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj"
+=======
+              "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj"
+>>>>>>> .r51
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+<<<<<<< .mine
+    "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Service\\Dream.Shop.Service.csproj": {
+||||||| .r43
+    "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Service\\Dream.Shop.Service.csproj": {
+=======
+    "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Service\\Dream.Shop.Service.csproj": {
+>>>>>>> .r51
+      "version": "1.0.0",
+      "restore": {
+<<<<<<< .mine
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Service\\Dream.Shop.Service.csproj",
+||||||| .r43
+        "projectUniqueName": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Service\\Dream.Shop.Service.csproj",
+=======
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Service\\Dream.Shop.Service.csproj",
+>>>>>>> .r51
+        "projectName": "Dream.Shop.Service",
+<<<<<<< .mine
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Service\\Dream.Shop.Service.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Service\\obj\\",
+||||||| .r43
+        "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Service\\Dream.Shop.Service.csproj",
+        "packagesPath": "C:\\Users\\loco1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Service\\obj\\",
+=======
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Service\\Dream.Shop.Service.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Service\\obj\\",
+>>>>>>> .r51
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+<<<<<<< .mine
+              "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj"
+||||||| .r43
+              "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+                "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj"
+=======
+              "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.DataEntity\\Dream.Shop.DataEntity.csproj"
+>>>>>>> .r51
+              },
+<<<<<<< .mine
+              "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.IService\\Dream.Shop.IService.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.IService\\Dream.Shop.IService.csproj"
+||||||| .r43
+              "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.IService\\Dream.Shop.IService.csproj": {
+                "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.IService\\Dream.Shop.IService.csproj"
+=======
+              "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.IService\\Dream.Shop.IService.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.IService\\Dream.Shop.IService.csproj"
+>>>>>>> .r51
+              },
+<<<<<<< .mine
+              "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj"
+||||||| .r43
+              "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Models\\Dream.Shop.Models.csproj": {
+                "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Models\\Dream.Shop.Models.csproj"
+=======
+              "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Models\\Dream.Shop.Models.csproj"
+>>>>>>> .r51
+              },
+<<<<<<< .mine
+              "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj"
+||||||| .r43
+              "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj": {
+                "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj"
+=======
+              "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj"
+>>>>>>> .r51
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+<<<<<<< .mine
+    "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj": {
+||||||| .r43
+    "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj": {
+=======
+    "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj": {
+>>>>>>> .r51
+      "version": "1.0.0",
+      "restore": {
+<<<<<<< .mine
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj",
+||||||| .r43
+        "projectUniqueName": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj",
+=======
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj",
+>>>>>>> .r51
+        "projectName": "Dream.Shop.Utility",
+<<<<<<< .mine
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Utility\\obj\\",
+||||||| .r43
+        "projectPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj",
+        "packagesPath": "C:\\Users\\loco1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Utility\\obj\\",
+=======
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Utility\\obj\\",
+>>>>>>> .r51
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

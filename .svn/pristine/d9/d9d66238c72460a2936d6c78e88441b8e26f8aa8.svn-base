@@ -1,0 +1,20 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "SQLConnection": "Server=.;Database=Dream_ShopDB;Integrated Security=True"
+  },
+  "EmailMod": {
+    "Name": "ADMIN",
+    "Address": "1039416071@qq.com",
+    "Host": "smtp.qq.com",
+    "Port": "25",
+    "Password": "owsdegopdfshbbaa"
+  }
+}

@@ -1,0 +1,120 @@
+﻿using Dream.Shop.DataEntity;
+using Dream.Shop.IService;
+using Dream.Shop.Models;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Dream.Shop.Service
+{
+    public class HomePageService: IHomePageService
+    {
+        private readonly ILogger<HomePageService> _logger;
+        private readonly Dream_ShopContext EF;
+        public HomePageService(ILogger<HomePageService> logger, Dream_ShopContext dbContext)
+        //: base(dbContext)
+        {
+            _logger = logger;
+            EF = dbContext;
+
+        }
+        public List<HomeGoodOutput> GetHomeGood()
+        {
+            var data = EF.GoodCategories.ToList();
+            return (from x in data
+                    join b in EF.Goods on x.CategoryID equals b.CategoryID
+                    select new HomeGoodOutput
+                    {
+                        CagegoryId = x.CategoryID,
+                        CagegoryName = x.CategoryName,
+                        GoodId = b.GoodId,
+                        GoodName = b.GoodName,
+                        ImgUrl = b.ThumbnailImg,
+                    }).ToList();
+        }
+        public List<object> GetCagegoryHomes()
+        {
+            var data = EF.GoodCategories.ToList();
+            var img = EF.Images.ToList();
+            var list = new List<object>();
+            foreach (var item in data.Where(a => a.ParentId == ""))
+            {
+                list.Add(new
+                {
+                    Id = item.Id,
+                    Num = item.CategoryID,
+                    Name = item.CategoryName,
+                    ImgUrl = img.FirstOrDefault(a => a.Number == item.CategoryID).ImgUrl,
+                    Child = GetCagegoryChild(data, item.CategoryID)
+                });
+            }
+            return list;
+
+        }
+        public Object GetCagegoryChild(List<GoodCategory> mod, string pid)
+        {
+            var data = mod.Where(a => a.CategoryID == pid).ToList();
+            var img = EF.Images.ToList();
+            var list = new List<HomeOutput>();
+
+            if (data.Count == 0)
+            {
+                var goods = EF.Goods.Where(a => a.CategoryID == pid).ToList();
+                foreach (var item in goods)
+                {
+                    list.Add(new HomeOutput
+                    {
+                        Id = item.Id,
+                        Num = item.GoodId,
+                        Name = item.GoodName,
+                        ImgUrl = img.FirstOrDefault(a => a.Number == item.GoodId).ImgUrl,
+                    });
+                }
+            }
+            foreach (var item in data)
+            {
+                list.Add(new HomeOutput
+                {
+                    Id = item.Id,
+                    Num = item.CategoryID,
+                    Name = item.CategoryName,
+                    ImgUrl = img.FirstOrDefault(a => a.Number == item.CategoryID).ImgUrl,
+                });
+            }
+            return data;
+        }
+
+        public List<Goods> GetFuzzyGood(string str)
+        {
+            var data = EF.Goods.ToList();
+            if (str == "")
+            {
+                return data;
+            };
+            data = (from x in data
+                    join b in EF.GoodCategories on x.CategoryID equals b.CategoryID
+                    where b.CategoryName == str
+                    select new Goods
+                    {
+                        Id = x.Id,
+                        CategoryID = x.CategoryID,
+                        CreateTime = x.CreateTime,
+                        GoodId = x.GoodId,
+                        GoodName = x.GoodName,
+                        IsDelect = x.IsDelect,
+                        Status = x.Status,
+                        Stock = x.Stock,
+                        ThumbnailImg = x.ThumbnailImg,
+                        VisitCount = x.VisitCount,
+                        WarningStock = x.WarningStock,
+                    }).ToList();
+            if (data.Count == 0)
+            {
+                data = EF.Goods.Where(a => a.GoodName == str).ToList();
+            }
+            return data;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+﻿using Dream.Shop.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Dream.Shop.DataEntity;
+
+namespace Dream.Shop.IService
+{
+    public interface IDetailsPageService
+    {
+        DetailsOutput GetGood(string goodid);
+        List<CommentOutput> GetGoodComment(string goodid, string pid = "");
+
+    }
+}

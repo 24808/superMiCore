@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Dream.Shop.DataEntity
+{
+    public class ShoppingAddress : BaseMod
+    {
+        /// <summary>
+        /// 用户编号
+        /// </summary>
+        public string UserId { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// 地址
+        /// </summary>
+        public string Address { get; set; }
+    }
+}

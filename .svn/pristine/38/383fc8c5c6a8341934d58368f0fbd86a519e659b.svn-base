@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Dream.Shop.IService;
+using Dream.Shop.WebApi.Handler;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Dream.Shop.WebApi.Controllers
+{
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class ShoppingApiController : ControllerBase
+    {
+        private readonly IShoppingCartService shopping;
+        public ShoppingApiController(IShoppingCartService _shopping) : base()
+        {
+            this.shopping = _shopping;
+        }
+        [HttpGet]
+        protected string GetCookies(string key)
+        {
+            HttpContext.Request.Cookies.TryGetValue(key, out string value);
+            if (string.IsNullOrEmpty(value))
+                value = string.Empty;
+            return value;
+        }
+        [HttpGet]
+        public ResData ShiooingCarList()
+        {
+            var userid = GetCookies("userid");
+            var list = shopping.GetShoppingCarList(userid);
+            return ResData.Succ(list);
+        }
+        [HttpPost]
+        public ResData IntoShoppingCar(string goodid,string specificationarr)
+        {
+            var userid = GetCookies("userid");
+            var list = shopping.IntoShoppingCar(goodid,userid,specificationarr);
+            return ResData.Succ(list);
+        }
+        [HttpPost]
+        public ResData ShiooingCarDelect(string goodid, string gsid)
+        {
+            var userid = GetCookies("userid");
+            var list = shopping.ShoppingCarDelect(goodid, gsid, userid);
+            return ResData.Succ(list);
+        }
+    }
+}

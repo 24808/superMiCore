@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Dream.Shop.DataEntity;
+
+namespace Dream.Shop.Models
+{
+    public class SpecificationOutput
+    {
+        /// <summary>
+        /// 规格编号
+        /// </summary>
+        public string SpecificationId { get; set; }
+        /// <summary>
+        /// 父编号
+        /// </summary>
+        public string ParentId { get; set; }
+        /// <summary>
+        /// 规格名
+        /// </summary>
+        public string SpecificationName { get; set; }
+        /// <summary>
+        /// 规格值
+        /// </summary>
+        public List<Good_Specification> SpecificationNum { get; set; }
+        /// <summary>
+        /// 子类
+        /// </summary>
+        public List<SpecificationOutput> Chlid { get; set; }
+
+    }
+}

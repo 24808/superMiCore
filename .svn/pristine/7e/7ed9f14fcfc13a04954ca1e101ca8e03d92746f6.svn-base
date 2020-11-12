@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Dream.Shop.IService;
+using Dream.Shop.WebApi.Handler;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace Dream.Shop.WebApi.Controllers
+{
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class DetailsController : ControllerBase
+    {
+        private readonly IDetailsPageService  details;
+        public DetailsController(IDetailsPageService _details) : base()
+        {
+            this.details = _details;
+        }
+        [HttpGet]
+        public ResData GetGood(string goodid)
+        {
+            var list = details.GetGood(goodid);
+            return ResData.Succ(list);
+        }
+    }
+}

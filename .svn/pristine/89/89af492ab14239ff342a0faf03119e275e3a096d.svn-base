@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Dream.Shop.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+
+namespace Dream.Shop.WebApi.Controllers
+{
+    public class BaseApiController : ControllerBase
+    {
+        private readonly IMemoryCache cache;
+
+        public BaseApiController(IMemoryCache cache)
+        {
+            this.cache = cache;
+        }
+        /// <summary>
+        /// 登录的用户信息
+        /// </summary>
+        public UserOutput LoginUser
+        {
+            get
+            {
+                string token = Request.Form["token"];
+                if (string.IsNullOrWhiteSpace(token))
+                    return null;
+                else
+                {
+                    var user = cache.Get<UserOutput>(token);
+                    return user;
+                }
+            }
+        }
+        /// <summary>
+        /// 设置用户缓存信息
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="token"></param>
+        /// <param name="obj"></param>
+        public void SetUser<T>(string token, T obj) where T : class
+        {
+            cache.Set<T>(token, obj, 24 * 60 * 60);
+        }
+        public void SetYz<T>(string token, T obj) where T : class
+        {
+            cache.Set<T>(token, obj,0*3*0);
+        }
+    }
+}

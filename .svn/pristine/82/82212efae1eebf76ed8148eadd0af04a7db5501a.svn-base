@@ -1,0 +1,415 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace Dream.Shop.DataEntity.Migrations
+{
+    public partial class loiir : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    CommentId = table.Column<string>(nullable: true),
+                    Number = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
+                    ParentId = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    SupportCount = table.Column<int>(nullable: false),
+                    OpposeCount = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Communities",
+                columns: table => new
+                {
+                    CommunityId = table.Column<string>(nullable: false),
+                    CategoryId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Communities", x => x.CommunityId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Good_Coupons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    GoodId = table.Column<string>(nullable: true),
+                    CouponId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Good_Coupons", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Good_Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    GoodId = table.Column<string>(nullable: true),
+                    Order = table.Column<string>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    OrderType = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Good_Orders", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Good_Promotions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    GoodId = table.Column<string>(nullable: true),
+                    PromotionId = table.Column<string>(nullable: true),
+                    Discounts = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Good_Promotions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Good_Specifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    GSId = table.Column<string>(nullable: true),
+                    GoodId = table.Column<string>(nullable: true),
+                    SpecificationId = table.Column<string>(nullable: true),
+                    SpecificationNum = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(nullable: true),
+                    ParentId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Good_Specifications", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GoodCategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    CategoryID = table.Column<string>(nullable: true),
+                    CategoryName = table.Column<string>(nullable: true),
+                    ParentId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GoodCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GoodCollects",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    GoodId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GoodCollects", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GoodCoupons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    CouponId = table.Column<string>(nullable: true),
+                    CouponName = table.Column<string>(nullable: true),
+                    StartTiem = table.Column<DateTime>(nullable: false),
+                    EndTime = table.Column<DateTime>(nullable: false),
+                    State = table.Column<bool>(nullable: false),
+                    ConditionDesc = table.Column<string>(nullable: true),
+                    Meet = table.Column<int>(nullable: false),
+                    DiscountedPrice = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GoodCoupons", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GoodPromotions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    PromotionId = table.Column<string>(nullable: true),
+                    PromotionName = table.Column<string>(nullable: true),
+                    StartTiem = table.Column<DateTime>(nullable: false),
+                    EndTime = table.Column<DateTime>(nullable: false),
+                    State = table.Column<bool>(nullable: false),
+                    PromotionTemplateId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GoodPromotions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Goods",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    GoodId = table.Column<string>(nullable: true),
+                    GoodName = table.Column<string>(nullable: true),
+                    CategoryID = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    Stock = table.Column<int>(nullable: false),
+                    WarningStock = table.Column<int>(nullable: false),
+                    Status = table.Column<int>(nullable: false),
+                    VisitCount = table.Column<int>(nullable: false),
+                    ThumbnailImg = table.Column<string>(nullable: true),
+                    OutLineId = table.Column<string>(nullable: true),
+                    ParameterId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Goods", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GoodSpecifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    SpecificationId = table.Column<string>(nullable: true),
+                    SpecificationName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GoodSpecifications", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    Number = table.Column<string>(nullable: true),
+                    ImgUrl = table.Column<string>(nullable: true),
+                    Rank = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderLogs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    Content = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderLogs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    OrderId = table.Column<string>(nullable: true),
+                    UserID = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PromotionTemplates",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    TemplateId = table.Column<string>(nullable: true),
+                    TemplateName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PromotionTemplates", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShoppingAddresses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingAddresses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShoppingCars",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    GoodId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
+                    Number = table.Column<int>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    ArrSpecificationId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCars", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserInfos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsDelect = table.Column<bool>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    UserID = table.Column<string>(nullable: true),
+                    UserName = table.Column<string>(nullable: true),
+                    PassWord = table.Column<string>(nullable: true),
+                    PhoneNum = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    RoleId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserInfos", x => x.Id);
+                });
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Communities");
+
+            migrationBuilder.DropTable(
+                name: "Good_Coupons");
+
+            migrationBuilder.DropTable(
+                name: "Good_Orders");
+
+            migrationBuilder.DropTable(
+                name: "Good_Promotions");
+
+            migrationBuilder.DropTable(
+                name: "Good_Specifications");
+
+            migrationBuilder.DropTable(
+                name: "GoodCategories");
+
+            migrationBuilder.DropTable(
+                name: "GoodCollects");
+
+            migrationBuilder.DropTable(
+                name: "GoodCoupons");
+
+            migrationBuilder.DropTable(
+                name: "GoodPromotions");
+
+            migrationBuilder.DropTable(
+                name: "Goods");
+
+            migrationBuilder.DropTable(
+                name: "GoodSpecifications");
+
+            migrationBuilder.DropTable(
+                name: "Images");
+
+            migrationBuilder.DropTable(
+                name: "OrderLogs");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "PromotionTemplates");
+
+            migrationBuilder.DropTable(
+                name: "ShoppingAddresses");
+
+            migrationBuilder.DropTable(
+                name: "ShoppingCars");
+
+            migrationBuilder.DropTable(
+                name: "UserInfos");
+        }
+    }
+}

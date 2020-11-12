@@ -1,0 +1,22 @@
+{
+  "version": 2,
+<<<<<<< .mine
+  "dgSpecHash": "opvWCRAtMf8e3kCePS8ExrV8WlPenHKNniHeyfvFfZHsJs+GDD4MvSMhYfBrAYOoV9d4GAPXrqh/EpleU/ll4Q==",
+||||||| .r43
+  "dgSpecHash": "49A4D0+3FqZPvwXHwFefroQk7Gf28dIfIbCx6q0zo9BU/1K4CXr8WwJNuBf4ZoUNrGPwVvv6ViC1nICJ7bs4Kw==",
+=======
+  "dgSpecHash": "SMHWPwzfB8QH/iCx+/Gb9xUHi2xtuZD3AcZ7EHfX4xf5embmhan/Q8JQHkupbIcASYJ+iKsmzgqNJwVPGCqnLQ==",
+>>>>>>> .r51
+  "success": true,
+<<<<<<< .mine
+  "projectFilePath": "C:\\Users\\Administrator\\Desktop\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj",
+||||||| .r43
+  "projectFilePath": "C:\\Users\\loco1\\Desktop\\我的\\mi\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj",
+=======
+  "projectFilePath": "C:\\Users\\Administrator\\Desktop\\新建文件夹 (2)\\Shop\\Dream.Shop.Utility\\Dream.Shop.Utility.csproj",
+>>>>>>> .r51
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

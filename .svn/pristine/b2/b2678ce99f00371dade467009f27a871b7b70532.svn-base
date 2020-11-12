@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Dream.Shop.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:Dream.Shop.WebApi.Controllers.AccountController.GetCookies(System.String)">
+            <summary>
+            获取cookies
+            </summary>
+            <param name="key">键</param>
+            <returns>返回对应的值</returns>
+        </member>
+        <member name="P:Dream.Shop.WebApi.Controllers.BaseApiController.LoginUser">
+            <summary>
+            登录的用户信息
+            </summary>
+        </member>
+        <member name="M:Dream.Shop.WebApi.Controllers.BaseApiController.SetUser``1(System.String,``0)">
+            <summary>
+            设置用户缓存信息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="token"></param>
+            <param name="obj"></param>
+        </member>
+    </members>
+</doc>
